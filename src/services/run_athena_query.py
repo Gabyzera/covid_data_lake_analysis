@@ -1,8 +1,7 @@
 import time
 from boto3 import Session
 
-def run_athena_query(query: str, session: Session, database_name: str, bucket_name: str):
-    print(query, session, database_name, bucket_name)
+def run_athena_query(query: str, session: Session, database_name: str, bucket_name: str, result_path: str):
     athena_client = session.client('athena')
     response = athena_client.start_query_execution(
         QueryString=query,
@@ -10,7 +9,7 @@ def run_athena_query(query: str, session: Session, database_name: str, bucket_na
             'Database': database_name
         },
         ResultConfiguration={
-            'OutputLocation': f's3://{bucket_name}/',
+            'OutputLocation': f's3://{bucket_name}/{result_path}',
         }
     )
     query_execution_id = response['QueryExecutionId']
