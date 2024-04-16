@@ -1,7 +1,7 @@
 def process_cases_and_deaths_response(raw_response, state_label: str, month_label: str, deaths_label: str, cases_label: str):
     processed_data = []
     
-    for row in raw_response['ResultSet']['Rows'][1:]:
+    for row in raw_response[1:]:
         month = row['Data'][1]['VarCharValue']
         state_name = row['Data'][0]['VarCharValue']
         total_cases = float(row['Data'][2]['VarCharValue'])

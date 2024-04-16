@@ -26,6 +26,27 @@ def run_athena_query(query: str, session: Session, database_name: str, bucket_na
             return None
         
         time.sleep(5) 
-    
-    result = athena_client.get_query_results(QueryExecutionId=query_execution_id)
-    return result
+
+    result_data = []
+    next_token = None
+
+    while True:
+        if next_token:
+            result_response = athena_client.get_query_results(
+                QueryExecutionId=query_execution_id,
+                NextToken=next_token
+            )
+        else:
+            result_response = athena_client.get_query_results(
+                QueryExecutionId=query_execution_id
+            )
+
+        result_data.extend(result_response['ResultSet']['Rows'])
+        next_token = result_response.get('NextToken', None)
+        print(next_token) 
+        
+        if not next_token:
+            break
+        time.sleep(5) 
+
+    return result_data
