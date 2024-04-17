@@ -10,8 +10,11 @@ from queries.us_states_deaths_and_cases_query import us_states_deaths_and_cases_
 from data_processing.process_global_deaths_response import process_global_deaths_response
 from data_processing.proccess_hospital_beds_response import process_hospital_beds_response
 from utils.generate_scatter_timeline_html_graph import generate_scatter_timeline_html_graph
+from utils.generate_plotly_line_polar_html_graph import generate_plotly_line_polar_html_graph
 from data_processing.process_cases_and_deaths_response import process_cases_and_deaths_response
+from queries.us_states_vaccinated_per_hundred_query import us_states_vaccinated_per_hundred_query
 from utils.generate_scatter_global_timeline_html_graph import  generate_scatter_global_timeline_html_graph
+from data_processing.process_vaccinated_per_hundred_response import process_vaccinated_per_hundred_response
 
 app = Flask(__name__)
 
@@ -52,6 +55,17 @@ def get_covid_global_deaths_timeline():
     global_deaths_graph = generate_scatter_global_timeline_html_graph(processed_data, country_label, month_label, total_deaths_label)
     
     return generate_html_page_for_plot('🌎💀', global_deaths_graph)
+
+@app.route('/api/covid/us-vaccinated-per-hundred', methods=['GET'])
+def get_covid_us_vaccinated_per_hundred():
+    location_label, average_fully_vaccinated_per_hundred_label = ['Estado', 'Média de pessoas totalmente vacinadas por 100 habitantes']
+    
+    result = run_athena_query(us_states_vaccinated_per_hundred_query, session, DATABASE_NAME, BUCKET_NAME, 'us-states-vaccinated-per-hundred')
+    
+    processed_data = process_vaccinated_per_hundred_response(result, location_label, average_fully_vaccinated_per_hundred_label)
+    vaccinated_per_hundred_graph = generate_plotly_line_polar_html_graph(processed_data, location_label, average_fully_vaccinated_per_hundred_label)
+    
+    return generate_html_page_for_plot('💉🦠', vaccinated_per_hundred_graph)
 
 if __name__ == '__main__': 
     app.run(port=PORT, host=HOST, debug=True)
