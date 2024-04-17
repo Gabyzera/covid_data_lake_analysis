@@ -9,7 +9,7 @@ def generate_plotly_line_polar_html_graph(processed_data, location_label, averag
                        theta=location_label, 
                        color=location_label, 
                        template='plotly_white',
-                       title='Média de Pessoas Vacinadas por 100 Habitantes no Estado Americano no mês 12/2022')
+                       title='As 10 Menores e Maiores Médias de Pessoas Vacinadas por 100 Habitantes em Estados Americanos no mês 12/2022')
 
     fig.update_layout(polar=dict(
                         bgcolor='rgba(255, 255, 255, 0.9)',
