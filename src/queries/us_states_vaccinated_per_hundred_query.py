@@ -1,7 +1,7 @@
 us_states_vaccinated_per_hundred_query = """
     WITH RankedVaccinations AS (
         SELECT 
-            location,
+            UPPER(location) AS location,
             AVG(people_fully_vaccinated_per_hundred) AS average_fully_vaccinated_per_hundred,
             ROW_NUMBER() OVER (ORDER BY AVG(people_fully_vaccinated_per_hundred) DESC) AS rn_desc,
             ROW_NUMBER() OVER (ORDER BY AVG(people_fully_vaccinated_per_hundred) ASC) AS rn_asc

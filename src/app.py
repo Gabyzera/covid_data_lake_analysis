@@ -4,6 +4,7 @@ from services.run_athena_query import run_athena_query
 from queries.hospital_beds_query import hospital_beds_query
 from queries.global_deaths_query import global_deaths_query
 from config.aws_config import session, DATABASE_NAME, BUCKET_NAME
+from utils.generate_plotly_3D_graph import generate_plotly_3D_graph
 from utils.generate_html_page_for_plot import generate_html_page_for_plot
 from utils.generate_plotly_bar_html_graph import generate_plotly_bar_html_graph
 from queries.us_states_deaths_and_cases_query import us_states_deaths_and_cases_query
@@ -12,9 +13,11 @@ from data_processing.proccess_hospital_beds_response import process_hospital_bed
 from utils.generate_scatter_timeline_html_graph import generate_scatter_timeline_html_graph
 from utils.generate_plotly_line_polar_html_graph import generate_plotly_line_polar_html_graph
 from data_processing.process_cases_and_deaths_response import process_cases_and_deaths_response
+from data_processing.process_dose_pfizer_vaccine_response import process_vaccine_allocation_data
 from queries.us_states_vaccinated_per_hundred_query import us_states_vaccinated_per_hundred_query
 from utils.generate_scatter_global_timeline_html_graph import  generate_scatter_global_timeline_html_graph
 from data_processing.process_vaccinated_per_hundred_response import process_vaccinated_per_hundred_response
+from queries.us_first_and_second_dose_pfizer_vaccine_query import us_first_and_second_dose_pfizer_vaccine_query
 
 app = Flask(__name__)
 
@@ -66,6 +69,17 @@ def get_covid_us_vaccinated_per_hundred():
     vaccinated_per_hundred_graph = generate_plotly_line_polar_html_graph(processed_data, location_label, average_fully_vaccinated_per_hundred_label)
     
     return generate_html_page_for_plot('💉🦠', vaccinated_per_hundred_graph)
+
+@app.route('/api/covid/us-first-and-second-dose-pfizer', methods=['GET'])
+def get_covid_us_first_and_second_dose_pfizer():
+    jurisdiction_label, week_of_allocations_label, first_dose_allocations_label, second_dose_allocations_label = ['Estado', 'Semana', 'Alocações da primeira dose', 'Alocações da segunda dose']
+    
+    result = run_athena_query(us_first_and_second_dose_pfizer_vaccine_query, session, DATABASE_NAME, BUCKET_NAME, 'us-first-and-second-dose-pfizer')
+    
+    processed_data = process_vaccine_allocation_data(result, jurisdiction_label, week_of_allocations_label, first_dose_allocations_label, second_dose_allocations_label)
+    doses_pfizer_graph = generate_plotly_3D_graph(processed_data, jurisdiction_label, week_of_allocations_label, first_dose_allocations_label, second_dose_allocations_label)
+    
+    return generate_html_page_for_plot('💉💊', doses_pfizer_graph)
 
 if __name__ == '__main__': 
     app.run(port=PORT, host=HOST, debug=True)

@@ -10,8 +10,7 @@ def generate_scatter_global_timeline_html_graph(processed_data, country_label, m
                          locations=country_label,
                          locationmode='country names',
                          template='seaborn',
-                         color=total_deaths_label,  # Represents each country by color
-                         color_continuous_scale='Tealgrn',
+                         color=country_label,  # Represents each country by color
                          size='log_scaled_deaths',  # Uses log-scaled deaths for size
                          hover_data={total_deaths_label: True, 'log_scaled_deaths': False},  # Information displayed when hovering over points
                          animation_frame=month_label,  # Creates an animation based on month
