@@ -16,7 +16,6 @@ def generate_plotly_line_polar_html_graph(processed_data, location_label, averag
     combined_elections_president_2020_with_averange_vaccinated_per_hundred_df = pd.merge(averange_vaccinated_per_hundred_df, most_votes_by_party_df, on='Estado', how='left')
     combined_elections_president_2020_with_averange_vaccinated_per_hundred_df['party_simplified'] = combined_elections_president_2020_with_averange_vaccinated_per_hundred_df['party_simplified'].fillna('NO DATA')
 
-    # Definindo um mapeamento com um valor padrão para partidos desconhecidos
     party_colors = {
         'REPUBLICAN': '#FF3333',
         'DEMOCRAT': '#0033FF',
@@ -28,12 +27,12 @@ def generate_plotly_line_polar_html_graph(processed_data, location_label, averag
                        theta=location_label, 
                        color='party_simplified', 
                        color_discrete_map=party_colors,
-                       hover_data=['party_simplified', 'candidatevotes'],# Usar a coluna de cor de partido mapeada
+                       hover_data=['party_simplified', 'candidatevotes'],
                        template='plotly_white',
                        title='As 10 Menores e Maiores Médias de Pessoas Totalmente Vacinadas por 100 Habitantes em Estados Americanos no mês 12/2022') 
-     # Adicionando subtítulo usando anotações
+ 
     fig.add_annotation(
-        x=0, y=1.08,  # Posicionamento do subtítulo em relação ao gráfico
+        x=0, y=1.08, 
         xref="paper", yref="paper",
         showarrow=False,
         text='Coloridas pelo Partido Eleitoral que soma o maior número nas Eleições Presidenciais de 2020',
