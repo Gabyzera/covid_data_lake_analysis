@@ -7,7 +7,8 @@ def generate_plotly_bar_html_graph(processed_data: list, x_label: str, y_label: 
     fig = px.bar(df,
                  x=x_label, 
                  y=y_label, 
-                 color=x_label, 
+                 color=y_label, 
+                 color_continuous_scale='Bluered',
                  title='Estados americanos e camas disponíveis')
     graph_html = fig.to_html(full_html=False)
     

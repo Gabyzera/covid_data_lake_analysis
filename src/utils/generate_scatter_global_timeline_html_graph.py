@@ -10,13 +10,15 @@ def generate_scatter_global_timeline_html_graph(processed_data, country_label, m
                          locations=country_label,
                          locationmode='country names',
                          template='seaborn',
-                         color=country_label,  # Represents each country by color
-                         size='log_scaled_deaths',  # Uses log-scaled deaths for size
-                         hover_data={total_deaths_label: True, 'log_scaled_deaths': False},  # Information displayed when hovering over points
-                         animation_frame=month_label,  # Creates an animation based on month
-                         projection="natural earth",  # Type of map projection
+                         color='log_scaled_deaths', 
+                         color_continuous_scale='Bluered',
+                         size='log_scaled_deaths', 
+                         hover_data={total_deaths_label: True, 'log_scaled_deaths': False},  
+                         animation_frame=month_label, 
+                         projection="natural earth", 
                          title="Total de Mortes no mês por COVID-19 por País",
-                         size_max=20)  # Adjust size_max if needed
+                         labels={'log_scaled_deaths':'Logarítmo de mortes em escala'},
+                         size_max=20)  
 
     fig.update_layout(title_text='Evolução Mensal de Mortes por COVID-19 mundialmente')
     
