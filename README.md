@@ -29,23 +29,23 @@ Rotas contendo visualizações na aplicação Flask, assegurando uma interface i
 Os dados salvos no Amazon S3 serão consumidos em um notebook que apresenta todas os gráficos e análises produzidas na aplicação.
 
 ## ✍🏼 Aprendizados
-> Criação de conta e utilização de serviços AWS.
+#### Criação de conta e utilização de serviços AWS.
 
-> Apresentar dados com plotly através da requisição do usuário na API.
+#### Apresentar dados com plotly através da requisição do usuário na API.
 
-> Adicionar timeouts nas queries da AWS Athena.
+#### Adicionar timeouts nas queries da AWS Athena.
 
-> Lidar com erros em Python.
+#### Lidar com erros em Python.
 
-> Utilização de Next Token para novas requisições a APIs externas.
+#### Utilização de Next Token para novas requisições a APIs externas.
 
-> Desafios e limitações do uso de `scatter_geo` em Plotly para grandes quantidades de dados.
+#### Desafios e limitações do uso de `scatter_geo` em Plotly para grandes quantidades de dados.
 
-> Uso eficiente de funções de janela em consultas SQL para reduzir o armazenamento temporário.
+#### Uso eficiente de funções de janela em consultas SQL para reduzir o armazenamento temporário.
 
-> Implementação de escalas contínuas de cores em visualizações.
+#### Implementação de escalas contínuas de cores em visualizações.
 
-> Tipagem de payloads como objetos em Python.
+#### Tipagem de payloads como objetos em Python.
 
 ## 💻 Tecnologias Utilizadas
 - AWS Athena
