@@ -22,7 +22,7 @@ Desenvolvimento de uma aplicação Flask que serve como a base, gerenciando cone
 ### 6. Visualização de Dados
 Criação de gráficos e mapas interativos usando a biblioteca Plotly para representar visualmente os dados.
 
-Uso de arquivo csv encontrado na Harvard Dataverse sobre as eleições presidenciais dos Estados Unidos para filtragem dos dados e relacionamento com a quantidade de pessoas vacinadas por estado. 
+Uso de arquivo csv encontrado na [Harvard Dataverse](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX) sobre as eleições presidenciais dos Estados Unidos para filtragem dos dados e relacionamento com a quantidade de pessoas vacinadas por estado. 
 
 ### 7. Roteamento
 Rotas contendo visualizações na aplicação Flask, assegurando uma interface interativa para os usuários.
