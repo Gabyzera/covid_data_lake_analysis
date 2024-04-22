@@ -1,7 +1,7 @@
 # 🦠 Análise AWS COVID-19 
 
 ## 👓 Visão Geral
-Este projeto visa construir rotas web interativa usando Flask que se conecta ao AWS COVID-19 data lake para visualizar dados atualizados sobre a pandemia. As rotas oferecem gráficos e mapas para explorar tendências de casos, disponibilidade de leitos hospitalares e dados de vacinação, facilitando a compreensão dos diversos aspectos da pandemia.
+Este projeto visa construir rotas web interativas usando Flask que se conecta ao AWS COVID-19 data lake para visualizar dados atualizados sobre a pandemia. As rotas oferecem gráficos e mapas para explorar tendências de casos, disponibilidade de leitos hospitalares e dados de vacinação, facilitando a compreensão dos diversos aspectos da pandemia.
 
 ## 🏗️ Etapas do Projeto
 ### 1. Configuração Inicial
@@ -21,6 +21,8 @@ Desenvolvimento de uma aplicação Flask que serve como a base, gerenciando cone
 
 ### 6. Visualização de Dados
 Criação de gráficos e mapas interativos usando a biblioteca Plotly para representar visualmente os dados.
+
+Uso de arquivo csv encontrado na Harvard Dataverse sobre as eleições presidenciais dos Estados Unidos para filtragem dos dados e relacionamento com a quantidade de pessoas vacinadas por estado. 
 
 ### 7. Roteamento
 Rotas contendo visualizações na aplicação Flask, assegurando uma interface interativa para os usuários.
@@ -46,6 +48,8 @@ Os dados salvos no Amazon S3 serão consumidos em um notebook que apresenta toda
 #### Implementação de escalas contínuas de cores em visualizações.
 
 #### Tipagem de payloads como objetos em Python.
+
+#### Fazer deploy utilizando Github pages.
 
 ## 💻 Tecnologias Utilizadas
 - AWS Athena
