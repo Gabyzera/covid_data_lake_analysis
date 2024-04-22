@@ -16,6 +16,8 @@ from utils.generate_scatter_global_timeline_html_graph import  generate_scatter_
 from data_processing.process_vaccinated_per_hundred_response import process_vaccinated_per_hundred_response
 from queries.us_total_vaccinations_and_people_fully_vaccinated_query import us_total_vaccinations_and_people_fully_vaccinated_query
 from data_processing.process_total_vaccinations_and_people_fully_vaccinated_response import process_total_vaccinations_and_people_fully_vaccinated_response
+from config.aws_config import BUCKET_FOLDER_CASES_AND_DEATHS, BUCKET_FOLDER_GLOBAL_DEATHS, BUCKET_FOLDER_HOSPITAL_BEDS, BUCKET_FOLDER_VACCINATED_PER_HUNDRED, \
+    BUCKET_FOLDER_VACCINES_AND_VACCINATED
 
 app = Flask(__name__)
 
@@ -31,7 +33,7 @@ def get_hospital_beds_availability():
     return generate_html_page_visualization(VisualizationPayload(
         labels=['Estado', 'Total de camas disponíveis'], 
         query_string=hospital_beds_query, 
-        bucket_folder_name='hospital-beds-availability-per-state',
+        bucket_folder_name=BUCKET_FOLDER_HOSPITAL_BEDS,
         process_response_function=process_hospital_beds_response,
         generate_graph_function=generate_plotly_bar_html_graph, icon_title='🛏️🏥'
     ))
@@ -41,7 +43,7 @@ def get_covid_us_cases_and_deaths_timeline():
     return generate_html_page_visualization(VisualizationPayload(
         labels=['Estado', 'Mês', 'Mortes', 'Casos'] , 
         query_string=us_states_deaths_and_cases_query, 
-        bucket_folder_name='us-states-cases-and-deaths-timeline',
+        bucket_folder_name=BUCKET_FOLDER_CASES_AND_DEATHS,
         process_response_function=process_cases_and_deaths_response,
         generate_graph_function=generate_scatter_timeline_html_graph, icon_title='💀🤢'
     ))
@@ -51,7 +53,7 @@ def get_covid_global_deaths_timeline():
     return generate_html_page_visualization(VisualizationPayload(
         labels=['País', 'Mês', 'Total de mortes no fim do mês'], 
         query_string=global_deaths_query, 
-        bucket_folder_name='global-deaths-timeline',
+        bucket_folder_name=BUCKET_FOLDER_GLOBAL_DEATHS,
         process_response_function=process_global_deaths_response,
         generate_graph_function=generate_scatter_global_timeline_html_graph, icon_title='🌎💀'
     ))
@@ -61,7 +63,7 @@ def get_covid_us_vaccinated_per_hundred():
     return generate_html_page_visualization(VisualizationPayload(
         labels=['Estado', 'Média de pessoas totalmente vacinadas por 100 habitantes'], 
         query_string=us_states_vaccinated_per_hundred_query, 
-        bucket_folder_name='us-states-vaccinated-per-hundred',
+        bucket_folder_name=BUCKET_FOLDER_VACCINATED_PER_HUNDRED,
         process_response_function=process_vaccinated_per_hundred_response,
         generate_graph_function=generate_plotly_line_polar_html_graph, icon_title='💉🦠'
     ))
@@ -71,7 +73,7 @@ def get_covid_us_total_vaccinations_people_fully_vaccinated():
     return generate_html_page_visualization(VisualizationPayload(
         labels=['Estado', 'Total de doses administradas', 'Pessoas totalmente vacinadas'], 
         query_string=us_total_vaccinations_and_people_fully_vaccinated_query, 
-        bucket_folder_name='us-total-vaccinations-people-fully-vaccinated',
+        bucket_folder_name=BUCKET_FOLDER_VACCINES_AND_VACCINATED,
         process_response_function=process_total_vaccinations_and_people_fully_vaccinated_response,
         generate_graph_function=generate_plotly_graph_area, icon_title='👥💉'
     ))

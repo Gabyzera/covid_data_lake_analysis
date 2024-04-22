@@ -8,45 +8,51 @@ Este projeto visa construir rotas web interativa usando Flask que se conecta ao 
 Utilização do Amazon CloudFormation para configurar o Data Catalog no AWS Athena, garantindo acesso fácil aos datasets relevantes do COVID-19 data lake.
 
 ### 2. Exploração de Dados
-Identificação e seleção dos conjuntos de dados mais relevantes, como números de casos, dados de leitos hospitalares e informações sobre vacinação.
+Identificação e seleção dos conjuntos de dados mais relevantes, como números de casos, mortes, dados de leitos hospitalares e informações sobre vacinação.
 
 ### 3. Desenvolvimento de Consultas SQL
 Elaboração de consultas SQL para extrair os dados necessários do AWS Athena para as visualizações planejadas.
 
-### 4. Criação da Aplicação Flask
+### 4. Salvar resultados das consultas na Amazon S3
+As consultas de SQL através da Amazon Athena possuem os dados de retorno armazanados em um bucket da Amazon S3.
+
+### 5. Criação da Aplicação Flask
 Desenvolvimento de uma aplicação Flask que serve como a base, gerenciando conexões e execuções de consultas ao Athena.
 
-### 5. Visualização de Dados
-Criação de gráficos e mapas interativos usando bibliotecas como Plotly para representar visualmente os dados.
+### 6. Visualização de Dados
+Criação de gráficos e mapas interativos usando a biblioteca Plotly para representar visualmente os dados.
 
-### 6. Implementação
-Integração das visualizações na aplicação Flask, assegurando uma interface interativa para os usuários.
+### 7. Roteamento
+Rotas contendo visualizações na aplicação Flask, assegurando uma interface interativa para os usuários.
+
+### 8. Jupyter Notebook para a visualização dos gráficos
+Os dados salvos no Amazon S3 serão consumidos em um notebook que apresenta todas os gráficos e análises produzidas na aplicação.
 
 ## ✍🏼 Aprendizados
-Utilização de Next Token para novas requisições a APIs externas.
+> Criação de conta e utilização de serviços AWS.
 
-Desafios e limitações do uso de `scatter_geo` em Plotly para grandes quantidades de dados.
+> Apresentar dados com plotly através da requisição do usuário na API.
 
-Aplicação de logaritmo para normalização de dados.
+> Adicionar timeouts nas queries da AWS Athena.
 
-Uso eficiente de funções de janela em consultas SQL para reduzir o armazenamento temporário.
+> Lidar com erros em Python.
 
-Implementação de escalas contínuas de cores em visualizações.
+> Utilização de Next Token para novas requisições a APIs externas.
 
-Navegação entre diretórios em Python.
+> Desafios e limitações do uso de `scatter_geo` em Plotly para grandes quantidades de dados.
 
-Criação de dicionários de cores para mapeamento em dataframes.
+> Uso eficiente de funções de janela em consultas SQL para reduzir o armazenamento temporário.
 
-Tipagem de payloads como objetos em Python.
+> Implementação de escalas contínuas de cores em visualizações.
+
+> Tipagem de payloads como objetos em Python.
 
 ## 💻 Tecnologias Utilizadas
 - AWS Athena
 - AWS CloudFormation
+- AWS S3
 - Flask
 - SQL
 - Python
 - Plotly
-
-## 📖 Documentação e Compartilhamento
-O projeto está documentado detalhadamente, incluindo as decisões de design, consultas SQL e arquitetura da aplicação Flask. Todo o código e documentação estão disponíveis no GitHub, e pode ser acessada e compartilhada através do perfil no LinkedIn.
-
+- HTML
